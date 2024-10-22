@@ -1,0 +1,9 @@
+{
+    "Simulator Target Bundle": "sk.csob.enterprise.SwiftUINavigationDemo",
+    "aps": {
+        "alert": "You received a new message from Otavio!",
+        "sound": "default",
+        "comment": "just drag and drop this file onto a simulator when the app is in the background."
+    },
+    "deeplink": "prefilledArticleDetail"
+}
