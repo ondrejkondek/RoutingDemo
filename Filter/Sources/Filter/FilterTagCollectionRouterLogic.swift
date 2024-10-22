@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 public protocol FilterTagCollectionRouterLogic: AnyObject {
-    func navigate(_ route: FilterTagCollectionRoute)
+    @MainActor func navigate(_ route: FilterTagCollectionRoute)
 }
 
 public enum FilterTagCollectionRoute {

@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 
+@MainActor
 public protocol ArticleDetailRouterLogic: AnyObject {
     func navigate(_ route: ArticleDetailRoute)
 }
@@ -15,6 +16,7 @@ public protocol ArticleDetailRouterLogic: AnyObject {
 public enum ArticleDetailRoute: Hashable {
     case home
     case back
+    case toCategories
 }
 
 class DefaultArticleRouter: ArticleDetailRouterLogic {
@@ -31,5 +33,7 @@ public extension EnvironmentValues {
 }
 
 struct ArticleDetailRouterKey: EnvironmentKey {
-    static let defaultValue: ArticleDetailRouterLogic = DefaultArticleRouter()
+    @MainActor static var defaultValue: ArticleDetailRouterLogic {
+        DefaultArticleRouter()
+    }
 }

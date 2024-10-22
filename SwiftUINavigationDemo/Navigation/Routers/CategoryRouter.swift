@@ -8,6 +8,7 @@
 import Foundation
 import Common
 import Categories
+import AuthManager
 
 extension NavigationStore: CategoriesRouterLogic {
     public func navigate(_ route: CategoriesRoute) {
@@ -15,7 +16,10 @@ extension NavigationStore: CategoriesRouterLogic {
         case .home:
             handleNavigationEvent(event: NavigationEvent.toHome)
         case .back:
-            _ = navigationPath.popLast()
+            // MARK: - this demonstrates how to handle 2 different destination for one "button"/Route
+            if self is Tab1NavigationStore {
+                _ = navigationPath.popLast()
+            }
         case let .articleDetail(articleId):
             navigationPath.append(ArticleDetailNode(articleId: articleId))
         case .filter:

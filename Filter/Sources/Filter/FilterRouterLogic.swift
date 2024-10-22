@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 
+@MainActor 
 public protocol FilterRouterLogic: AnyObject {
     func navigate(_ route: FilterRoute)
 }
@@ -31,5 +32,7 @@ public extension EnvironmentValues {
 }
 
 struct FilterRouterKey: EnvironmentKey {
-    static let defaultValue: FilterRouterLogic = DefaultFilterRouter()
+    @MainActor static var defaultValue: FilterRouterLogic {
+        DefaultFilterRouter()
+    }
 }

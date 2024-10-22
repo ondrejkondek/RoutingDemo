@@ -10,22 +10,36 @@ import Common
 import Foundation
 import Homescreen
 import SwiftUI
+import Login
+import Article
+import Filter
+import Homescreen
+import Categories
 
 @MainActor
 public struct ViewFactory {
+    private let navigationStore: NavigationStore
+    
+    public init(navigationStore: NavigationStore) {
+        self.navigationStore = navigationStore
+    }
+    
     @ViewBuilder
     func getView(for node: any Node) -> some View {
         switch node {
         case is HomescreenNode:
-            HomescreenResolver().resolveView()
+            HomescreenView()
         case is CategoryNode:
-            CategoryResolver().resolveView(id: "")
+            CategoriesView(router: navigationStore)
         case let node as ArticleDetailNode:
-            ArticleDetailResolver().resolveView(articleNode: node)
+            ArticleDetailView()
+                .environmentObject(ArticleDetailVM(prefilledVoucher: node.prefilledVoucher))
         case is FilterNode:
-            FilterResolver().resolveView()
+            FilterView()
         case is FilterTagCollectionNode:
-            FilterTagCollectionResolver().resolveView()
+            FilterTagCollectionView()
+        case let node as LoginNode:
+            LoginView(router: navigationStore, completion: node.completion)
         default:
             Text("Error: No Destination")
         }

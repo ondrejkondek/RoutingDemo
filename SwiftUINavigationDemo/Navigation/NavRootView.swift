@@ -31,9 +31,9 @@ public struct NavRootView: View {
                 }
             )
         ) {
-            ViewFactory().getView(for: navigationStore.rootNode)
+            ViewFactory(navigationStore: navigationStore).getView(for: navigationStore.rootNode)
                 .navigationDestination(for: AnyHashable.self) { destination in
-                    ViewFactory().getView(for: destination)
+                    ViewFactory(navigationStore: navigationStore).getView(for: destination)
                 }
         }
         .sheet(isPresented: .init(
@@ -45,7 +45,7 @@ public struct NavRootView: View {
             }
         }
         .environment(\.homescreenRouter, navigationStore)
-        .environment(\.categoryRouter, navigationStore)
+//        .environment(\.categoryRouter, navigationStore) - this is injected via constructor as an option 2
         .environment(\.articleDetailRouter, navigationStore)
         .environment(\.filterRouter, navigationStore)
         .environment(\.filterTagCollectionRouter, navigationStore)

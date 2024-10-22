@@ -36,6 +36,10 @@ public struct ArticleDetailView: View {
                     router.navigate(.home)
                 }
             
+            Button("back to categories via navigationEvent") {
+                router.navigate(.toCategories)
+            }
+            
             Spacer()
         }
         .frame(maxWidth: .infinity)

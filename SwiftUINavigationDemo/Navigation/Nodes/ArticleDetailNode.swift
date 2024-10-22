@@ -25,7 +25,7 @@ struct ArticleDetailNode: Node {
     func handleDeeplink(
         deeplink: Any,
         navigationStore: NavigationStore
-    ) -> Bool {
+    ) async -> Bool {
         return false
     }
 }

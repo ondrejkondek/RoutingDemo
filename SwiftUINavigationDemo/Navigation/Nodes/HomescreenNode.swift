@@ -7,8 +7,9 @@
 
 import Common
 import Homescreen
+import Foundation
 
-struct HomescreenNode: Node {
+struct HomescreenNode: Node {    
     func handleNavigationEvent(
         event: Any,
         navigationStore: NavigationStore
@@ -18,6 +19,8 @@ struct HomescreenNode: Node {
         case .toHome:
             navigationStore.popToNode(node: self)
             return true
+        default:
+            return false
         }
     }
     
@@ -33,6 +36,13 @@ struct HomescreenNode: Node {
                 navigationStore: navigationStore
             )
             return true
+        case .authorizedLogin:
+            let categoryNode = CategoryNode()
+            navigationStore.navigationPath.append(categoryNode)
+            return categoryNode.handleDeeplink(
+                deeplink: deeplink,
+                navigationStore: navigationStore
+            )
         }
     }
 }

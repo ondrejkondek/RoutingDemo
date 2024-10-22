@@ -14,6 +14,8 @@ extension NavigationStore: HomescreenRouterLogic {
         switch route {
         case .categories:
             navigationPath.append(CategoryNode())
+        case .login:
+            navigationPath.append(LoginNode())
         }
     }
 }

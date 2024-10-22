@@ -24,7 +24,7 @@ public struct HomescreenView: View {
                 .onTapGesture {
                     router.navigate(.categories)
                 }
-            
+                        
             Spacer()
         }
         .frame(maxWidth: .infinity)

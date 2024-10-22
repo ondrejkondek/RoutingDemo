@@ -16,6 +16,8 @@ extension NavigationStore: ArticleDetailRouterLogic {
             handleNavigationEvent(event: NavigationEvent.toHome)
         case .back:
             _ = navigationPath.popLast()
+        case .toCategories:
+            handleNavigationEvent(event: NavigationEvent.toCategories)
         }
     }
 }

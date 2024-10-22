@@ -5,6 +5,9 @@
 //  Created by Jan Maloušek on 25.01.2024.
 //
 
+import SwiftUI
+
+@MainActor
 public protocol Node: Hashable, Equatable {
     var id: String { get }
     
@@ -13,7 +16,7 @@ public protocol Node: Hashable, Equatable {
         navigationStore: NavigationStore
     ) -> Bool
     
-    func handleDeeplink(
+    func handleDeeplink (
         deeplink: Any,
         navigationStore: NavigationStore
     ) -> Bool

@@ -8,12 +8,13 @@
 import Foundation
 import SwiftUI
 
-public protocol HomescreenRouterLogic: AnyObject {
+@MainActor public protocol HomescreenRouterLogic: AnyObject {
     func navigate(_ route: HomescreenRoute)
 }
 
 public enum HomescreenRoute: Hashable {
     case categories
+    case login
 }
 
 class DefaultHomescreenRouter: HomescreenRouterLogic {
@@ -30,5 +31,7 @@ public extension EnvironmentValues {
 }
 
 struct HomescreenRouterKey: EnvironmentKey {
-    static let defaultValue: HomescreenRouterLogic = DefaultHomescreenRouter()
+    @MainActor static var defaultValue: HomescreenRouterLogic {
+        DefaultHomescreenRouter()
+    }
 }

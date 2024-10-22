@@ -8,4 +8,5 @@
 import Common
 import Foundation
 
-struct FilterTagCollectionNode: Node {}
+struct FilterTagCollectionNode: Node {
+}

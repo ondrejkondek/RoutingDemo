@@ -6,12 +6,18 @@
 //
 
 import SwiftUI
+import AuthManager
 
 public struct CategoriesView: View {
-    @Environment(\.categoryRouter) private var router: CategoriesRouterLogic
+//    @Environment(\.categoryRouter) private var router: CategoriesRouterLogic
+    private let router: CategoriesRouterLogic
     @State private var counter = 1
+        
+//    public init() {}
     
-    public init() {}
+    public init(router: CategoriesRouterLogic) {
+        self.router = router
+    }
     
     public var body: some View {
         VStack(spacing: 20) {
@@ -48,10 +54,14 @@ public struct CategoriesView: View {
                 }
                 .padding()
         }
-        .onAppear{
-            print("onAppear")
-        }
         .frame(maxWidth: .infinity)
-        .background(Color.blue)
+        .background(Color.cyan)
+        .task {
+            // MARK: - Send a request after logging in
+            if AuthObserver.shared.isLoggedIn {
+                let posts = await AuthObserver.shared.fetch()
+                print("XXXXXXXX", posts.first?.title)
+            }
+        }
     }
 }

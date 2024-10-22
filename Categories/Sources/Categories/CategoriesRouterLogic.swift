@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 
+@MainActor
 public protocol CategoriesRouterLogic: AnyObject {
     func navigate(_ route: CategoriesRoute)
 }
@@ -18,21 +19,27 @@ public enum CategoriesRoute: Hashable {
     case articleDetail(articleId: String)
     case filter
 }
-
-class DefaultCategoriesRouter: CategoriesRouterLogic {
-    public func navigate(_ route: CategoriesRoute) {
-        assertionFailure()
-    }
-}
-
-public extension EnvironmentValues {
-    var categoryRouter: CategoriesRouterLogic {
-        get { self[CategoriesRouterKey.self] }
-        set { self[CategoriesRouterKey.self] = newValue }
-    }
-}
-
-struct CategoriesRouterKey: EnvironmentKey {
-    static let defaultValue: CategoriesRouterLogic = DefaultCategoriesRouter()
-}
-
+ 
+//class DefaultCategoriesRouter: CategoriesRouterLogic {
+//    public func navigate(_ route: CategoriesRoute) {
+//        assertionFailure()
+//    }
+//    
+//    public func navigateDeeplink() async {
+//        assertionFailure()
+//    }
+//}
+//
+//public extension EnvironmentValues {
+//    var categoryRouter: CategoriesRouterLogic {
+//        get { self[CategoriesRouterKey.self] }
+//        set { self[CategoriesRouterKey.self] = newValue }
+//    }
+//}
+//
+//struct CategoriesRouterKey: EnvironmentKey {
+//    @MainActor static var defaultValue: CategoriesRouterLogic {
+//        DefaultCategoriesRouter()
+//    }
+//}
+//
